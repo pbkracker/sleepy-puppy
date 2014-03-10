@@ -43,6 +43,7 @@ bcrypt = Bcrypt(app)
 # Initalize flask mail object for email notifications
 flask_mail = Mail(app)
 
+
 # Decorator for Token Auth on API Requests
 #from sleepypuppy.admin.admin.models import Admin as AdminModel
 # The dectorat function for API token auth
@@ -61,6 +62,7 @@ def require_appkey(view_function):
 
 # Initalize the Flask API
 flask_api = Api(app, decorators=[csrf_protect.exempt, require_appkey])
+
 
 # Initalize Flask Login functionality
 def init_login():
@@ -81,10 +83,10 @@ from admin.admin.views import MyAdminIndexView, AdminView
 flask_admin = Admin(app, 'Sleepy Puppy', index_view=MyAdminIndexView(), base_template='admin/base.html')
 
 # Import the collector which is used to collect capture information
-from collector import views
+#from collector import views
 
 # Import the screenshot upload handler
-from upload import upload
+#from upload import upload
 
 # Initalize all Flask API views
 from api.views import CaptureView, CaptureViewList, PayloadView, PayloadViewList, AssessmentView, AssessmentViewList
@@ -107,7 +109,8 @@ flask_admin.add_view(CaptureView(db.session))
 flask_admin.add_view(UserView(db.session))
 flask_admin.add_view(AssessmentView(db.session))
 flask_admin.add_view(AdminView(AdminModel, db.session))
-from admin import views
+#from admin import views
+
 
 # Default route redirect to admin page
 @app.route('/')
