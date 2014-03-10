@@ -21,5 +21,4 @@ itsdangerous==0.23
 py-bcrypt==0.4
 pytz==2013.9
 six==1.5.2
-sleepypuppy==0.1
 wsgiref==0.1.2
