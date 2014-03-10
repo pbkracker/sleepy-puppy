@@ -29,6 +29,14 @@ csrf_protect = flask_wtf.CsrfProtect(app)
 # Initalize DB object
 db = SQLAlchemy(app)
 
+# Try to setup the DB automatically for heroku
+from sleepypuppy.admin.admin.models import Admin as AdminModel
+db.drop_all()
+db.create_all()
+admin_user = AdminModel(login='micky', password='mouse')
+db.session.add(admin_user)
+db.session.commit()
+
 # Initalize Bcrypt object for password hashing
 bcrypt = Bcrypt(app)
 
@@ -36,7 +44,7 @@ bcrypt = Bcrypt(app)
 flask_mail = Mail(app)
 
 # Decorator for Token Auth on API Requests
-from sleepypuppy.admin.admin.models import Admin as AdminModel
+#from sleepypuppy.admin.admin.models import Admin as AdminModel
 # The dectorat function for API token auth
 def require_appkey(view_function):
     @wraps(view_function)
