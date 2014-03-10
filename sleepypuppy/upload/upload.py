@@ -7,12 +7,14 @@ import Image
 # Only allow png extensions, which is the filetype we generate using HTML5 canvas.
 ALLOWED_EXTENSIONS = set(['png'])
 
+
 def allowed_file(filename):
     """
     Method to filter out bad filenames and prevent dir traversal.
     """
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 @csrf_protect.exempt
 @app.route('/up', methods=['GET', 'POST'])
@@ -33,6 +35,7 @@ def upload_file():
             im.thumbnail(size, Image.ANTIALIAS)
             im.save(app.config['UPLOAD_FOLDER'] + '/small_' + filename, "PNG")
     return ""
+
 
 @app.route('/up/<filename>')
 def uploaded_file(filename):
