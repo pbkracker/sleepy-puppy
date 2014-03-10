@@ -9,7 +9,7 @@ Flask-Script==0.6.3
 Flask-WTF==0.9.4
 Jinja2==2.7.2
 MarkupSafe==0.18
-PIL==1.1.7
+-e hg+https://bitbucket.org/etienned/pil-2009-raclette/#egg=PIL
 Pillow==2.3.0
 SQLAlchemy==0.9.3
 WTForms==1.0.5
