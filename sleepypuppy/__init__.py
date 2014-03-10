@@ -29,6 +29,9 @@ csrf_protect = flask_wtf.CsrfProtect(app)
 # Initalize DB object
 db = SQLAlchemy(app)
 
+# Initalize Bcrypt object for password hashing
+bcrypt = Bcrypt(app)
+
 # Try to setup the DB automatically for heroku
 from sleepypuppy.admin.admin.models import Admin as AdminModel
 db.drop_all()
@@ -36,9 +39,6 @@ db.create_all()
 admin_user = AdminModel(login='micky', password='mouse')
 db.session.add(admin_user)
 db.session.commit()
-
-# Initalize Bcrypt object for password hashing
-bcrypt = Bcrypt(app)
 
 # Initalize flask mail object for email notifications
 flask_mail = Mail(app)
